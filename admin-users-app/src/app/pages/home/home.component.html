@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" routerLink="/users" routerLinkActive="active"
+        >Usuarios</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/areas" routerLinkActive="active"
+        >Áreas</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive="active"
+        >Dashboard</a
+      >
+    </li>
+  </ul>
+
+  <!-- Aquí se cargarán los componentes según la ruta -->
+  <div class="tab-content mt-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<!-- Modal -->
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ isEditMode ? "Editar Área" : "Crear Área" }}
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    class="d-flex flex-column justify-content-center gap-3"
+    [formGroup]="areaForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="cod">Código</label>
+        <input
+          type="text"
+          id="cod"
+          class="form-control"
+          formControlName="cod"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('cod') }"
+        />
+        <div *ngIf="isFieldInvalid('cod')" class="invalid-feedback">
+          Este campo es requerido y debe tener 2 digitos.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="name">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('name') }"
+        />
+        <div *ngIf="isFieldInvalid('name')" class="invalid-feedback">
+          Este campo es requerido y no puede exceder los 50 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="leader">Líder</label>
+        <input
+          type="number"
+          id="leader"
+          class="form-control"
+          formControlName="leader"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('leader') }"
+        />
+        <div *ngIf="isFieldInvalid('leader')" class="invalid-feedback">
+          Este campo es requerido y debe tener 7 digitos.
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="status">Estado</label>
+        <select
+          id="status"
+          class="form-control"
+          formControlName="status"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('status') }"
+        >
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <div *ngIf="isFieldInvalid('status')" class="invalid-feedback">
+          El estado es requerido.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="close()">
+    Cerrar
+  </button>
+  <button
+    *ngIf="!loading"
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="areaForm.invalid"
+    (click)="onSubmit()"
+  >
+    {{ isEditMode ? "Editar Área" : "Crear Área" }}
+  </button>
+  <button
+    *ngIf="loading"
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="areaForm.invalid"
+  >
+    Cargando...
+  </button>
+</div>
